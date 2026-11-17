@@ -1,0 +1,25 @@
+version = 1
+
+[metadata]
+name = "archive-prep"
+description = "Gather archives into one folder."
+author = "The Lupaxa Project"
+tags = ["archives"]
+
+[input]
+recursive = true
+
+[output]
+directory = "prepared"
+collision = "rename"
+
+[rules]
+mode = "first"
+
+[[rules.items]]
+name = "archives"
+globs = ["*.zip", "*.tar", "*.tar.gz", "*.tgz", "*.7z"]
+
+[rules.items.action]
+type = "move"
+destination = "{output}/archives/{filename}"

@@ -1,0 +1,25 @@
+version = 1
+
+[metadata]
+name = "temp-cleanup"
+description = "Quarantine temporary files so they can be restored."
+author = "The Lupaxa Project"
+tags = ["cleanup"]
+
+[input]
+recursive = true
+
+[output]
+directory = "kept"
+collision = "error"
+
+[rules]
+mode = "first"
+
+[[rules.items]]
+name = "temporary"
+globs = ["*.tmp", "*.temp", "*~"]
+
+[rules.items.action]
+type = "delete"
+permanent = false

@@ -1,0 +1,29 @@
+version = 1
+
+[metadata]
+name = "rename-and-move"
+description = "Rename a photo, then move it into a year folder."
+author = "The Lupaxa Project"
+tags = ["rename"]
+
+[input]
+recursive = false
+
+[output]
+directory = "library"
+collision = "error"
+
+[rules]
+mode = "first"
+
+[[rules.items]]
+name = "shots"
+glob = "*.jpg"
+
+[[rules.items.steps]]
+type = "rename"
+template = "{stem}_{counter:04d}.{extension}"
+
+[[rules.items.steps]]
+type = "move"
+destination = "{output}/{year}/{filename}"

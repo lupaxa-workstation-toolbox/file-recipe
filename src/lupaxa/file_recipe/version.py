@@ -1,0 +1,10 @@
+"""Version information for lupaxa.file_recipe."""
+
+from __future__ import annotations
+
+__version__ = "0.0.0"
+
+
+def get_version() -> str:
+    """Return the package version string."""
+    return __version__

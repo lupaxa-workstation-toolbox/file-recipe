@@ -1,0 +1,25 @@
+version = 1
+
+[metadata]
+name = "photos"
+description = "File photos into year and month folders."
+author = "The Lupaxa Project"
+tags = ["photos"]
+
+[input]
+recursive = true
+
+[output]
+directory = "photos"
+collision = "rename"
+
+[rules]
+mode = "first"
+
+[[rules.items]]
+name = "images"
+globs = ["*.jpg", "*.jpeg", "*.png", "*.heic", "*.gif"]
+
+[rules.items.action]
+type = "move"
+destination = "{output}/{year}/{month}/{filename}"

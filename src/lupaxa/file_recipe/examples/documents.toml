@@ -1,0 +1,28 @@
+version = 1
+
+[metadata]
+name = "documents"
+description = "File documents by the year they were modified."
+author = "The Lupaxa Project"
+tags = ["documents"]
+
+[input]
+recursive = true
+
+[output]
+directory = "documents"
+collision = "error"
+
+[rules]
+mode = "first"
+
+[[rules.items]]
+name = "docs"
+globs = ["*.pdf", "*.doc", "*.docx", "*.odt", "*.rtf"]
+
+[rules.items.when]
+all = [{ size_min = 1 }]
+
+[rules.items.action]
+type = "move"
+destination = "{output}/{year}/{filename}"

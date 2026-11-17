@@ -1,0 +1,27 @@
+version = 1
+
+[metadata]
+name = "duplicates"
+description = "Quarantine duplicate files and keep the first copy."
+author = "The Lupaxa Project"
+tags = ["duplicates"]
+
+[input]
+recursive = true
+
+[output]
+directory = "kept"
+collision = "error"
+
+[rules]
+mode = "first"
+
+[[rules.items]]
+name = "same-bytes"
+globs = ["*"]
+
+[rules.items.action]
+type = "dedupe"
+hash = "sha256"
+keep = "first"
+then = "quarantine"

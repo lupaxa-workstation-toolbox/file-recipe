@@ -1,0 +1,30 @@
+version = 1
+
+[metadata]
+name = "safe-text-replace"
+description = "Replace a placeholder in text files and keep a backup."
+author = "The Lupaxa Project"
+tags = ["text"]
+
+[input]
+recursive = true
+
+[output]
+directory = "unchanged"
+collision = "error"
+
+[rules]
+mode = "first"
+
+[[rules.items]]
+name = "notes"
+glob = "*.txt"
+
+[rules.items.action]
+type = "text"
+encoding = "utf-8"
+final_newline = true
+
+[[rules.items.action.literal]]
+find = "TODO"
+replace = "DONE"

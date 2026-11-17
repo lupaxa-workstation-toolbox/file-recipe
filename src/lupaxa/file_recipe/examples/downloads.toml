@@ -1,0 +1,41 @@
+version = 1
+
+[metadata]
+name = "downloads"
+description = "Sort loose downloads by kind."
+author = "The Lupaxa Project"
+tags = ["downloads"]
+
+[input]
+recursive = false
+
+[output]
+directory = "sorted"
+collision = "rename"
+
+[rules]
+mode = "first"
+
+[[rules.items]]
+name = "archives"
+globs = ["*.zip", "*.tar", "*.tar.gz", "*.tgz", "*.7z"]
+
+[rules.items.action]
+type = "move"
+destination = "{output}/archives/{filename}"
+
+[[rules.items]]
+name = "documents"
+globs = ["*.pdf", "*.txt", "*.md"]
+
+[rules.items.action]
+type = "move"
+destination = "{output}/documents/{year}/{filename}"
+
+[[rules.items]]
+name = "images"
+globs = ["*.jpg", "*.jpeg", "*.png"]
+
+[rules.items.action]
+type = "move"
+destination = "{output}/images/{year}/{month}/{filename}"

@@ -1,0 +1,123 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lupaxa-file-recipe"
+dynamic = ["version"]
+description = "Plan, preview, and run reusable filesystem workflows from TOML recipes."
+readme = "README.md"
+license = { file = "LICENCE" }
+requires-python = ">=3.11"
+
+authors = [
+  { name = "The Lupaxa Project" }
+]
+
+keywords = ["filesystem", "recipe", "toml", "cli", "automation"]
+
+dependencies = []
+
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: System Administrators",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: MacOS",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: System :: Filesystems",
+  "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://github.com/lupaxa-workstation-toolbox/file-recipe"
+Documentation = "https://github.com/lupaxa-workstation-toolbox/file-recipe#readme"
+Repository = "https://github.com/lupaxa-workstation-toolbox/file-recipe"
+Issues = "https://github.com/lupaxa-workstation-toolbox/file-recipe/issues"
+
+[project.scripts]
+file-recipe = "lupaxa.file_recipe.cli:main"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "pytest-cov>=5.0",
+  "ruff>=0.6.0",
+  "mypy>=1.12.0",
+  "hatch>=1.12.0",
+  "bump-my-version>=1.2.0",
+  "pip-audit>=2.7.0",
+]
+test = [
+  "pytest>=8.0",
+  "pytest-cov>=5.0",
+]
+
+[tool.hatch.version]
+path = "src/lupaxa/file_recipe/version.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "src/**",
+  "README.md",
+  "LICENCE",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lupaxa"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/lupaxa/file_recipe/examples" = "lupaxa/file_recipe/examples"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "S", "UP", "SIM", "C4", "ISC", "D", "ANN", "PT"]
+ignore = [
+  "D200", "D201", "D202", "D203", "D204", "D205", "D206", "D207", "D208", "D209", "D210", "D211", "D212",
+  "ISC001",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101", "S104", "S105", "S106", "D", "ANN001", "ANN201"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.11"
+files = ["src", "tests"]
+mypy_path = "src"
+explicit_package_bases = true
+namespace_packages = true
+warn_unused_configs = true
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+follow_imports = "normal"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = "-ra -q --disable-warnings --cov=lupaxa.file_recipe --cov-report=term-missing"
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.coverage.run]
+source = ["lupaxa.file_recipe"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true

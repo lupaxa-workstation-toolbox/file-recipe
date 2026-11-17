@@ -1,0 +1,13 @@
+version = 1
+
+[metadata]
+name = "chained"
+description = "Sort downloads, then gather archives into a prepared folder."
+author = "The Lupaxa Project"
+tags = ["chain"]
+
+[[recipes]]
+name = "downloads"
+
+[[recipes]]
+name = "archive-prep"
