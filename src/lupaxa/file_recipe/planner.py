@@ -712,7 +712,7 @@ class _Planner:
             node,
             scan_limit=int(limits.get("max_scan_bytes", _DEFAULT_SCAN) or _DEFAULT_SCAN),
             hash_algorithm=self._hash_name(recipe),
-            hash_file=lambda path, algorithm: self.hash_file(path, algorithm),
+            hash_file=self.hash_file,
         )
 
     def _context(

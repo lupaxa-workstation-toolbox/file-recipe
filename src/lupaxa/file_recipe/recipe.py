@@ -415,8 +415,17 @@ def _check_constraints(spec: dict[str, Any], value: object) -> None:
 
 
 def builtin_dir() -> Path:
-    """Return the packaged example directory."""
-    return Path(str(files("lupaxa.file_recipe.examples")))
+    """Return the example recipe directory.
+
+    A checkout keeps the recipes in ``examples/`` at the repository root.
+    An installed copy reads those same files from the package.
+    """
+    here = Path(__file__).resolve().parent
+    if here.parent.parent.name == "src":
+        checkout = here.parent.parent.parent / "examples"
+        if checkout.is_dir():
+            return checkout
+    return Path(str(files("lupaxa.file_recipe").joinpath("examples")))
 
 
 def recipe_search_dirs(cwd: Path, user_recipe_dir: Path) -> list[Path]:

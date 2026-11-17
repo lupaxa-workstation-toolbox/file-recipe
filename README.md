@@ -14,7 +14,7 @@ This README is the usage guide and the developer guide.
 
 ## What it Does
 
-- Load a versioned TOML recipe from a path, the project, your user directory, or the built-in examples.
+- Load a versioned TOML recipe from a path, the project, your user directory, or the examples in `examples/`.
 - Discover files inside the input roots. Symlinks are not followed unless the recipe says so.
 - Match names, sizes, times, types, and bounded content with declarative conditions.
 - Render destinations from a small template language.
@@ -107,7 +107,7 @@ Search order for a name:
 1. A path, when the argument contains a slash or ends in `.toml`.
 2. `./.file-recipe/recipes/<name>.toml` and `./recipes/<name>.toml`. Two project files with the same name is an error.
 3. The user recipe directory.
-4. The built-in examples.
+4. The examples shipped with the tool. In this repository they are in [`examples/`](examples/).
 
 ## Operations
 
@@ -435,7 +435,7 @@ An operation the platform cannot perform fails at validation when that is knowab
 
 ## Example Recipes
 
-These ship with the package and validate against version 1:
+The recipes are in [`examples/`](examples/) at the root of this repository. They also ship with the package, so a name such as `downloads` works after install. Each file validates against version 1.
 
 | Name                | What it Does                                                     |
 | ------------------- | ---------------------------------------------------------------- |
